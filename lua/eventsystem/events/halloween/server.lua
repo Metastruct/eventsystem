@@ -3,8 +3,10 @@ include("shared.lua")
 
 local SpecialVector = function() end
 if LMVector then
-	SpecialVector = function(x, y, z, landmark, is_local)
-		return LMVector(x, y, z, landmark, is_local):pos()
+	SpecialVector = function(x, y, z, _landmark, is_local)
+		if( landmark.get( _landmark ) ~= nil )then
+			return LMVector(x, y, z, _landmark, is_local):pos()
+		end
 	end
 end
 
